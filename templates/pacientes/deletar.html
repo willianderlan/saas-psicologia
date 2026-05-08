@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h2 class="mb-4">
+            Deletar Paciente
+        </h2>
+
+        <p>
+
+            Tem certeza que deseja deletar:
+
+            <strong>
+                {{ paciente.nome }}
+            </strong>?
+
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger">
+                Confirmar Exclusão
+            </button>
+
+            <a
+                href="/pacientes/"
+                class="btn btn-secondary"
+            >
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    Dashboard
+</h1>
+
+<div class="row mb-4">
+
+    <!-- Pacientes -->
+    <div class="col-md-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h5>Total de Pacientes</h5>
+
+                <h2>{{ total_pacientes }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Sessões Hoje -->
+    <div class="col-md-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h5>Sessões Hoje</h5>
+
+                <h2>{{ sessoes_hoje }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Próximas Sessões -->
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h4 class="mb-4">
+            Próximas Sessões
+        </h4>
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Paciente</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for sessao in proximas_sessoes %}
+
+                <tr>
+
+                    <td>{{ sessao.paciente.nome }}</td>
+
+                    <td>{{ sessao.data }}</td>
+
+                    <td>{{ sessao.hora }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3">
+                        Nenhuma sessão agendada.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

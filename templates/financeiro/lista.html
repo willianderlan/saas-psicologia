@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+    <h2>Financeiro</h2>
+
+    <a href="/financeiro/novo/" class="btn btn-dark">
+        Novo Pagamento
+    </a>
+
+</div>
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h5>Total Faturado</h5>
+
+        <h2>R$ {{ total_faturado }}</h2>
+
+    </div>
+
+</div>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+
+            <th>Paciente</th>
+            <th>Valor</th>
+            <th>Status</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for pagamento in pagamentos %}
+
+        <tr>
+
+            <td>
+                {{ pagamento.sessao.paciente.nome }}
+            </td>
+
+            <td>
+                R$ {{ pagamento.valor }}
+            </td>
+
+            <td>
+
+                {% if pagamento.status == 'pago' %}
+
+                    <span class="badge bg-success">
+                        Pago
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-warning text-dark">
+                        Pendente
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

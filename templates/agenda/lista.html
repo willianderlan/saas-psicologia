@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+    <h2>Agenda</h2>
+
+    <a href="/agenda/nova/" class="btn btn-dark">
+        Nova Sessão
+    </a>
+
+</div>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+
+            <th>Paciente</th>
+            <th>Data</th>
+            <th>Hora</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for sessao in sessoes %}
+
+        <tr>
+
+            <td>{{ sessao.paciente.nome }}</td>
+
+            <td>{{ sessao.data }}</td>
+
+            <td>{{ sessao.hora }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
