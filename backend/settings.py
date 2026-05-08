@@ -30,9 +30,9 @@ SECRET_KEY = 'django-insecure-96b5+3(8v46!s7o&)s^5qo5@p6okiwydr$ud9=%6--g4q!1(%-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'saas-psicologia.onrender.com',
+    "127.0.0.1",
+    "localhost",
+    "saas-psicologia.onrender.com",
 ]
 
 
