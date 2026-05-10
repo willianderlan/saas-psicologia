@@ -8,16 +8,20 @@
 
 <div class="row mb-4">
 
-    <!-- Pacientes -->
-    <div class="col-md-4">
+    <!-- PACIENTES -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-0 bg-primary text-white">
 
             <div class="card-body">
 
-                <h5>Total de Pacientes</h5>
+                <h6>
+                    Pacientes
+                </h6>
 
-                <h2>{{ total_pacientes }}</h2>
+                <h2>
+                    {{ total_pacientes }}
+                </h2>
 
             </div>
 
@@ -25,16 +29,62 @@
 
     </div>
 
-    <!-- Sessões Hoje -->
-    <div class="col-md-4">
+    <!-- SESSÕES -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-0 bg-success text-white">
 
             <div class="card-body">
 
-                <h5>Sessões Hoje</h5>
+                <h6>
+                    Sessões
+                </h6>
 
-                <h2>{{ sessoes_hoje }}</h2>
+                <h2>
+                    {{ total_sessoes }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PAGAMENTOS -->
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow-sm border-0 bg-warning">
+
+            <div class="card-body">
+
+                <h6>
+                    Pagamentos
+                </h6>
+
+                <h2>
+                    {{ total_pagamentos }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FATURAMENTO -->
+    <div class="col-md-3 mb-4">
+
+        <div class="card shadow-sm border-0 bg-dark text-white">
+
+            <div class="card-body">
+
+                <h6>
+                    Faturamento
+                </h6>
+
+                <h2>
+                    R$ {{ total_faturado }}
+                </h2>
 
             </div>
 
@@ -44,9 +94,9 @@
 
 </div>
 
-<!-- Próximas Sessões -->
+<!-- PRÓXIMAS SESSÕES -->
 
-<div class="card shadow-sm">
+<div class="card shadow-sm border-0">
 
     <div class="card-body">
 
@@ -54,7 +104,7 @@
             Próximas Sessões
         </h4>
 
-        <table class="table">
+        <table class="table table-striped">
 
             <thead>
 
@@ -74,11 +124,17 @@
 
                 <tr>
 
-                    <td>{{ sessao.paciente.nome }}</td>
+                    <td>
+                        {{ sessao.paciente.nome }}
+                    </td>
 
-                    <td>{{ sessao.data }}</td>
+                    <td>
+                        {{ sessao.data }}
+                    </td>
 
-                    <td>{{ sessao.hora }}</td>
+                    <td>
+                        {{ sessao.hora }}
+                    </td>
 
                 </tr>
 

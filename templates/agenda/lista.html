@@ -2,48 +2,55 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between mb-4">
+<h2 class="mb-4">
+    Agenda
+</h2>
 
-    <h2>Agenda</h2>
+<div id="Calendar"></div>
 
-    <a href="/agenda/nova/" class="btn btn-dark">
-        Nova Sessão
-    </a>
+<link
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
+    rel="stylesheet"
+>
 
-</div>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 
-<table class="table table-striped">
+<script>
 
-    <thead>
+document.addEventListener('DOMContentLoaded', function() {
 
-        <tr>
+    var calendarEl = document.getElementById('Calendar');
 
-            <th>Paciente</th>
-            <th>Data</th>
-            <th>Hora</th>
+    var calendar = new FullCalendar.Calendar(calendarEl, {
 
-        </tr>
+        initialView: 'dayGridMonth',
 
-    </thead>
+        locale: 'pt-br',
 
-    <tbody>
+        height: 450,
 
-        {% for sessao in sessoes %}
+        events: [
 
-        <tr>
+            {% for sessao in sessoes %}
 
-            <td>{{ sessao.paciente.nome }}</td>
+            {
 
-            <td>{{ sessao.data }}</td>
+                title: '{{ sessao.paciente.nome }}',
 
-            <td>{{ sessao.hora }}</td>
+                start: '{{ sessao.data }}T{{ sessao.hora }}',
 
-        </tr>
+            },
 
-        {% endfor %}
+            {% endfor %}
 
-    </tbody>
+        ]
 
-</table>
+    });
+
+    calendar.render();
+
+});
+
+</script>
 
 {% endblock %}

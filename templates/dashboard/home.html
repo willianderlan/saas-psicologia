@@ -2,19 +2,22 @@
 
 {% block content %}
 
-<h1 class="mb-4">
+<h2 class="mb-4">
     Dashboard
-</h1>
+</h2>
 
 <div class="row">
 
-    <div class="col-md-3">
+    <!-- PACIENTES -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm border-0 bg-primary text-white">
 
             <div class="card-body">
 
-                <h5>Pacientes</h5>
+                <h6>
+                    Pacientes
+                </h6>
 
                 <h2>
                     {{ total_pacientes }}
@@ -26,13 +29,16 @@
 
     </div>
 
-    <div class="col-md-3">
+    <!-- SESSÕES -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm border-0 bg-success text-white">
 
             <div class="card-body">
 
-                <h5>Sessões</h5>
+                <h6>
+                    Sessões
+                </h6>
 
                 <h2>
                     {{ total_sessoes }}
@@ -44,13 +50,16 @@
 
     </div>
 
-    <div class="col-md-3">
+    <!-- PAGAMENTOS -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm border-0 bg-warning">
 
             <div class="card-body">
 
-                <h5>Pagamentos</h5>
+                <h6>
+                    Pagamentos
+                </h6>
 
                 <h2>
                     {{ total_pagamentos }}
@@ -62,13 +71,16 @@
 
     </div>
 
-    <div class="col-md-3">
+    <!-- FATURAMENTO -->
+    <div class="col-md-3 mb-4">
 
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm border-0 bg-dark text-white">
 
             <div class="card-body">
 
-                <h5>Faturamento</h5>
+                <h6>
+                    Faturamento
+                </h6>
 
                 <h2>
                     R$ {{ total_faturado }}
