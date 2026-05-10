@@ -8,7 +8,9 @@ from .forms import SessaoForm
 @login_required
 def lista_sessoes(request):
 
-    sessoes = Sessao.objects.all().order_by('data', 'hora')
+    sessoes = Sessao.objects.do_usuario(
+        request.user
+    )
 
     return render(
         request,
@@ -24,15 +26,32 @@ def criar_sessao(request):
 
         form = SessaoForm(request.POST)
 
+        form.fields['paciente'].queryset = (
+            form.fields['paciente']
+            .queryset
+            .filter(usuario=request.user)
+        )
+
         if form.is_valid():
 
-            form.save()
+            sessao = form.save(commit=False)
+
+            if sessao.paciente.usuario != request.user:
+                return redirect('lista_sessoes')
+
+            sessao.save()
 
             return redirect('lista_sessoes')
 
     else:
 
         form = SessaoForm()
+
+        form.fields['paciente'].queryset = (
+            form.fields['paciente']
+            .queryset
+            .filter(usuario=request.user)
+        )
 
     return render(
         request,

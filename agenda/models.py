@@ -2,6 +2,15 @@ from django.db import models
 from pacientes.models import Paciente
 
 
+class SessaoManager(models.Manager):
+
+    def do_usuario(self, user):
+
+        return self.filter(
+            paciente__usuario=user
+        )
+
+
 class Sessao(models.Model):
 
     paciente = models.ForeignKey(
@@ -22,5 +31,8 @@ class Sessao(models.Model):
         auto_now_add=True
     )
 
+    objects = SessaoManager()
+
     def __str__(self):
+
         return f'{self.paciente.nome} - {self.data}'

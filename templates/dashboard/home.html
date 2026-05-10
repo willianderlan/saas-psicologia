@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    Dashboard
+</h1>
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5>Pacientes</h5>
+
+                <h2>
+                    {{ total_pacientes }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5>Sessões</h5>
+
+                <h2>
+                    {{ total_sessoes }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5>Pagamentos</h5>
+
+                <h2>
+                    {{ total_pagamentos }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5>Faturamento</h5>
+
+                <h2>
+                    R$ {{ total_faturado }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -3,6 +3,15 @@ from django.db import models
 from agenda.models import Sessao
 
 
+class PagamentoManager(models.Manager):
+
+    def do_usuario(self, user):
+
+        return self.filter(
+            sessao__paciente__usuario=user
+        )
+
+
 class Pagamento(models.Model):
 
     STATUS_CHOICES = [
@@ -31,6 +40,8 @@ class Pagamento(models.Model):
     criado_em = models.DateTimeField(
         auto_now_add=True
     )
+
+    objects = PagamentoManager()
 
     def __str__(self):
 

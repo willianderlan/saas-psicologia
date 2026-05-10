@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SaaS Psicólogos</title>
+    <title>Sistema Psicólogos</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -24,7 +24,7 @@
         <div class="container-fluid">
 
             <a class="navbar-brand" href="/">
-                Psicólogos SaaS
+                Sistema Psicólogos
             </a>
 
             <div>
@@ -45,7 +45,7 @@
                     Financeiro
                 </a>
 
-                <form action="/logout/" method="post">
+                <form action="/logout/" method="post" class="d-inline">
 
     {% csrf_token %}
 
@@ -67,6 +67,8 @@
         {% endblock %}
 
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

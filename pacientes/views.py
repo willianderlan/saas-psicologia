@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
+
+from django.contrib.auth.decorators import login_required
+
 from .models import Paciente
 from .forms import PacienteForm
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+
 
 @login_required
 def lista_pacientes(request):
 
-    pacientes = Paciente.objects.all()
+    pacientes = Paciente.objects.do_usuario(
+        request.user
+    )
 
     return render(
         request,
@@ -24,11 +29,17 @@ def criar_paciente(request):
         form = PacienteForm(request.POST)
 
         if form.is_valid():
-            form.save()
+
+            paciente = form.save(commit=False)
+
+            paciente.usuario = request.user
+
+            paciente.save()
 
             return redirect('lista_pacientes')
 
     else:
+
         form = PacienteForm()
 
     return render(
@@ -36,12 +47,15 @@ def criar_paciente(request):
         'pacientes/criar.html',
         {'form': form}
     )
+
+
 @login_required
 def editar_paciente(request, paciente_id):
 
     paciente = get_object_or_404(
         Paciente,
-        id=paciente_id
+        id=paciente_id,
+        usuario=request.user
     )
 
     if request.method == 'POST':
@@ -76,7 +90,8 @@ def deletar_paciente(request, paciente_id):
 
     paciente = get_object_or_404(
         Paciente,
-        id=paciente_id
+        id=paciente_id,
+        usuario=request.user
     )
 
     if request.method == 'POST':

@@ -8,7 +8,9 @@ from .forms import PagamentoForm
 @login_required
 def lista_pagamentos(request):
 
-    pagamentos = Pagamento.objects.all().order_by('-criado_em')
+    pagamentos = Pagamento.objects.do_usuario(
+        request.user
+    )
 
     total_faturado = 0
 
@@ -39,15 +41,36 @@ def criar_pagamento(request):
 
         form = PagamentoForm(request.POST)
 
+        form.fields['sessao'].queryset = (
+            form.fields['sessao']
+            .queryset
+            .filter(
+                paciente__usuario=request.user
+            )
+        )
+
         if form.is_valid():
 
-            form.save()
+            pagamento = form.save(commit=False)
+
+            if pagamento.sessao.paciente.usuario != request.user:
+                return redirect('lista_pagamentos')
+
+            pagamento.save()
 
             return redirect('lista_pagamentos')
 
     else:
 
         form = PagamentoForm()
+
+        form.fields['sessao'].queryset = (
+            form.fields['sessao']
+            .queryset
+            .filter(
+                paciente__usuario=request.user
+            )
+        )
 
     return render(
         request,
